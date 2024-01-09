@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.FPS.Game;
 using UnityEngine;
 
 namespace Unity.FPS.AI
@@ -11,13 +12,24 @@ namespace Unity.FPS.AI
         [Tooltip("The Nodes making up the path")]
         public List<Transform> PathNodes = new List<Transform>();
 
-        void Start()
+
+        /*void Start()
         {
             foreach (var enemy in EnemiesToAssign)
             {
                 enemy.PatrolPath = this;
             }
+        }*/
+
+        // LEVELING SYSTEM
+        private void Update()
+        {
+            if (GetComponentInChildren<EnemyController>() == null)
+            {
+                Destroy(gameObject);
+            }
         }
+        //
 
         public float GetDistanceToNode(Vector3 origin, int destinationNodeIndex)
         {

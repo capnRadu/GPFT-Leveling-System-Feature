@@ -198,6 +198,10 @@ namespace Unity.FPS.AI
                 m_EyeRendererData.Renderer.SetPropertyBlock(m_EyeColorMaterialPropertyBlock,
                     m_EyeRendererData.MaterialIndex);
             }
+
+            // LEVELING SYSTEM
+            PatrolPath = GetComponentInParent<PatrolPath>();
+            //
         }
 
         void Update()

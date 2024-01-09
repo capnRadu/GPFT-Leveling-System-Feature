@@ -28,8 +28,8 @@ namespace Unity.FPS.Game
         public PlayerResources PlayerResources { get; private set; }
         private GameObject player;
 
-        [SerializeField] private int coinsReward;
-        [SerializeField] private float XpReward;
+        public int coinsReward;
+        public float XpReward;
         //
 
         private void Awake()
