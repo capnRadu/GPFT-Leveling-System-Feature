@@ -1,4 +1,5 @@
-﻿using Unity.FPS.Game;
+﻿using TMPro;
+using Unity.FPS.Game;
 using Unity.FPS.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,10 @@ namespace Unity.FPS.UI
     {
         [Tooltip("Image component dispplaying current health")]
         public Image HealthFillImage;
+
+        // LEVELING SYSTEM
+        [SerializeField] private TextMeshProUGUI healthAmountText;
+        //
 
         Health m_PlayerHealth;
 
@@ -28,6 +33,10 @@ namespace Unity.FPS.UI
         {
             // update health bar value
             HealthFillImage.fillAmount = m_PlayerHealth.CurrentHealth / m_PlayerHealth.MaxHealth;
+
+            // LEVELING SYSTEM
+            healthAmountText.text = $"{(int) m_PlayerHealth.CurrentHealth}";
+            //
         }
     }
 }

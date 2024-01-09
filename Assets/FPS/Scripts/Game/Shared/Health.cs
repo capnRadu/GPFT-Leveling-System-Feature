@@ -27,6 +27,9 @@ namespace Unity.FPS.Game
         // LEVELING SYSTEM
         public PlayerResources PlayerResources { get; private set; }
         private GameObject player;
+
+        [SerializeField] private int coinsReward;
+        [SerializeField] private float XpReward;
         //
 
         private void Awake()
@@ -99,8 +102,8 @@ namespace Unity.FPS.Game
                 // LEVELING SYSTEM
                 if (this.gameObject != player)
                 {
-                    PlayerResources.GainCoins(2);
-                    PlayerResources.GainXP(20);
+                    PlayerResources.GainCoins(coinsReward);
+                    PlayerResources.GainXP(XpReward);
                 }
                 //
             }

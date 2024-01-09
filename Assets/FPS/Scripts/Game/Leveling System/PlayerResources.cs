@@ -10,8 +10,10 @@ namespace Unity.FPS.Game
 
         public float currentXp = 0;
         public float levelUpXp = 100;
-        public int currentLevel = 0;
         private float levelUpXpMultiplier = 0.4f;
+
+        public int currentLevel = 0;
+        public int levelUpAmount = 0;
 
         public void GainCoins(int amount)
         {
@@ -32,6 +34,7 @@ namespace Unity.FPS.Game
                 currentXp = 0;
                 levelUpXp += levelUpXp * levelUpXpMultiplier;
                 currentLevel++;
+                levelUpAmount++;
             }
         }
     }

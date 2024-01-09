@@ -15,6 +15,8 @@ namespace Unity.FPS.UI
         [SerializeField] private Image XpFillImage;
         [SerializeField] private TextMeshProUGUI currentLevelText;
 
+        [SerializeField] private TextMeshProUGUI levelUpAmountText;
+
         PlayerResources m_PlayerResources;
 
         private void Start()
@@ -29,6 +31,7 @@ namespace Unity.FPS.UI
 
             XpFillImage.fillAmount = m_PlayerResources.currentXp / m_PlayerResources.levelUpXp;
             currentLevelText.text = $"{m_PlayerResources.currentLevel}";
+            levelUpAmountText.text = $"{m_PlayerResources.levelUpAmount}x";
         }
     }
 }

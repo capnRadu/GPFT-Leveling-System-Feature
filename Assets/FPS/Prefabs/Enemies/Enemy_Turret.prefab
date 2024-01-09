@@ -278,6 +278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 400
   CriticalHealthRatio: 0.3
+  coinsReward: 8
+  XpReward: 20
 --- !u!114 &3464315327790461765
 MonoBehaviour:
   m_ObjectHideFlags: 0
