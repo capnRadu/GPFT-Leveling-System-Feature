@@ -12,7 +12,7 @@ namespace Unity.FPS.AI
         [Tooltip("The Nodes making up the path")]
         public List<Transform> PathNodes = new List<Transform>();
 
-
+        // This version works if you want to have a predefined number of enemies inside the scene, all having the same patrol path; add them to the EnemiesToAssign list in the inspector
         /*void Start()
         {
             foreach (var enemy in EnemiesToAssign)
@@ -24,6 +24,7 @@ namespace Unity.FPS.AI
         // LEVELING SYSTEM
         private void Update()
         {
+            // Destroy the patrol path gameobject if its enemy child dies
             if (GetComponentInChildren<EnemyController>() == null)
             {
                 Destroy(gameObject);

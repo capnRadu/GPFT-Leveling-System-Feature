@@ -35,6 +35,7 @@ namespace Unity.FPS.UI
             HealthFillImage.fillAmount = m_PlayerHealth.CurrentHealth / m_PlayerHealth.MaxHealth;
 
             // LEVELING SYSTEM
+            // Display the current health amount as text
             healthAmountText.text = $"{(int) m_PlayerHealth.CurrentHealth}";
             //
         }

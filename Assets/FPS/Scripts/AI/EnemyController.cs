@@ -200,6 +200,7 @@ namespace Unity.FPS.AI
             }
 
             // LEVELING SYSTEM
+            // Reference the patrol path parent of this enemy gameobject
             PatrolPath = GetComponentInParent<PatrolPath>();
             //
         }

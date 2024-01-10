@@ -87,7 +87,7 @@ namespace Unity.FPS.Game
                 audioSource.outputAudioMixerGroup = AudioUtility.GetAudioGroup(AudioUtility.AudioGroups.HUDVictory);
                 audioSource.PlayScheduled(AudioSettings.dspTime + DelayBeforeWinMessage);
                 */
-                PlaySound(); // LEVELING SYSTEM
+                PlaySound(); // LEVELING SYSTEM ^^ 
 
                 // create a game message
                 //var message = Instantiate(WinGameMessagePrefab).GetComponent<DisplayMessage>();
@@ -108,12 +108,14 @@ namespace Unity.FPS.Game
                 m_TimeLoadEndGameScene = Time.time + EndSceneLoadDelay;
                 
                 // LEVELING SYSTEM
+                // If the player dies, make sure to destroy the wave manager
                 Destroy(FindObjectOfType<WaveManager>().gameObject);
                 //
             }
         }
 
         // LEVELING SYSTEM
+        // Convert into a method to be easily accessed by the wave manager
         public void PlaySound()
         {
             var audioSource = gameObject.AddComponent<AudioSource>();

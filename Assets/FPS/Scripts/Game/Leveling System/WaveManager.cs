@@ -7,22 +7,27 @@ namespace Unity.FPS.Game
 {
     public class WaveManager : MonoBehaviour
     {
+        // Singleton
         public static WaveManager Instance;
 
+        // Prefab for the enemy (the prefab contains the patrol path gameobject, with the enemy bot being its child, so each enemy has its unique patrol path;
+        // see Assets/FPS/Prefabs/Leveling System)
         [SerializeField] private GameObject enemyBot;
+
         private GameFlowManager flowManager;
 
         public int wave = 0;
+        
+        // Increase the number of enemies after each wave
         private int baseEnemiesPerWave = 4;
         private int enemiesIncreasePerWave = 1;
 
+        // Increase the enemies' health, and rewards after each wave
         private int enemyHealthIncrease = -2;
         private int enemyCoinRewardIncrease = -4;
         private float enemyXpRewardIncrease = -5;
 
-        public bool patrolPathSignal = false;
-
-        // Player Resources
+        // Player resources
         public int coinsPersistent = 0;
         public float currentXpPersistent = 0;
         public float levelUpXpPersistent = 100;
@@ -51,6 +56,7 @@ namespace Unity.FPS.Game
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            // Each time a new scene is loaded, run the method
             NextWave();
         }
 
@@ -77,8 +83,8 @@ namespace Unity.FPS.Game
         {
             yield return new WaitForSeconds(2f);
 
+            // Increase the number of enemies
             int enemiesToSpawn = baseEnemiesPerWave + (enemiesIncreasePerWave * (wave - 1));
-            patrolPathSignal = true;
 
             for (int i = 0; i < enemiesToSpawn; i++)
             {
@@ -87,6 +93,7 @@ namespace Unity.FPS.Game
 
                 var enemy = Instantiate(enemyPrefab, randomSpawnPosition, spawnRotation);
 
+                // Increase the enemy's stats
                 enemy.GetComponentInChildren<Health>().MaxHealth += enemyHealthIncrease;
                 enemy.GetComponentInChildren<Health>().coinsReward += enemyCoinRewardIncrease;
                 enemy.GetComponentInChildren<Health>().XpReward += enemyXpRewardIncrease;

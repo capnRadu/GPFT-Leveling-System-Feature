@@ -100,6 +100,7 @@ namespace Unity.FPS.Game
                 OnDie?.Invoke();
 
                 // LEVELING SYSTEM
+                // Call methods only if the enemy is killed
                 if (this.gameObject != player)
                 {
                     PlayerResources.GainCoins(coinsReward);
