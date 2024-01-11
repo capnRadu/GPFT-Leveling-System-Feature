@@ -88,8 +88,13 @@ namespace Unity.FPS.Game
 
             for (int i = 0; i < enemiesToSpawn; i++)
             {
+                var x = Random.Range(1, 10000);
+                Random.InitState(x);
+
                 Vector3 randomSpawnPosition = new Vector3(Random.Range(-2.4f, 3), enemyPrefab.transform.position.y, Random.Range(-4.3f, 1.2f));
                 Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+
+                Debug.Log(randomSpawnPosition + " " + spawnRotation);
 
                 var enemy = Instantiate(enemyPrefab, randomSpawnPosition, spawnRotation);
 
