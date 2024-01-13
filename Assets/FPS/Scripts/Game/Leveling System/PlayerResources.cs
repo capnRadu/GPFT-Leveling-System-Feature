@@ -57,7 +57,7 @@ namespace Unity.FPS.Game
         {
             if (currentXp >= levelUpXp)
             {
-                currentXp = 0;
+                currentXp -= levelUpXp;
                 levelUpXp += levelUpXp * levelUpXpMultiplier;
                 currentLevel++;
                 levelUpAmount++;
