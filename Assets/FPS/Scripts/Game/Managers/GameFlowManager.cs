@@ -14,6 +14,12 @@ namespace Unity.FPS.Game
         [Header("Win")] [Tooltip("This string has to be the name of the scene you want to load when winning")]
         public string WinSceneName = "WinScene";
 
+        // LEVELING SYSTEM
+        [Header("Level Up Menu")]
+        public string LevelUpMenuScene = "LevelUpMenuScene";
+        PlayerResources PlayerResources;
+        //
+
         [Tooltip("Duration of delay before the fade-to-black, if winning")]
         public float DelayBeforeFadeToBlack = 4f;
 
@@ -27,7 +33,6 @@ namespace Unity.FPS.Game
         [Header("Lose")] [Tooltip("This string has to be the name of the scene you want to load when losing")]
         public string LoseSceneName = "LoseScene";
 
-
         public bool GameIsEnding { get; private set; }
 
         float m_TimeLoadEndGameScene;
@@ -37,6 +42,10 @@ namespace Unity.FPS.Game
         {
             EventManager.AddListener<AllObjectivesCompletedEvent>(OnAllObjectivesCompleted);
             EventManager.AddListener<PlayerDeathEvent>(OnPlayerDeath);
+
+            // LEVELING SYSTEM
+            PlayerResources = FindObjectOfType<PlayerResources>();
+            //
         }
 
         void Start()
@@ -76,7 +85,18 @@ namespace Unity.FPS.Game
             EndGameFadeCanvasGroup.gameObject.SetActive(true);
             if (win)
             {
-                m_SceneToLoad = WinSceneName;
+                // LEVELING SYSTEM
+                // If the player has leveled up, load the level up menu
+                if (PlayerResources.levelUpAmount > 0)
+                {
+                    m_SceneToLoad = LevelUpMenuScene;
+                }
+                else
+                {
+                    m_SceneToLoad = WinSceneName;
+                }
+                //
+                
                 m_TimeLoadEndGameScene = Time.time + EndSceneLoadDelay + DelayBeforeFadeToBlack;
 
                 // play a sound on win

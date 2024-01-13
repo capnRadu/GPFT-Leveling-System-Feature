@@ -163,6 +163,14 @@ namespace Unity.FPS.Game
 
         private Queue<Rigidbody> m_PhysicalAmmoPool;
 
+        // LEVELING SYSTEM
+        private WaveManager WaveManager;
+        private GameObject player;
+
+        // This will be the base damage for the enemies' weapons
+        [NonSerialized] public float projectileDamage = 10f;
+        //
+
         void Awake()
         {
             m_CurrentAmmo = MaxAmmo;
@@ -194,6 +202,17 @@ namespace Unity.FPS.Game
                     m_PhysicalAmmoPool.Enqueue(shell.GetComponent<Rigidbody>());
                 }
             }
+
+            // LEVELING SYSTEM
+            // Set the projectile damage value for the player's weapon to the one from the wave manager so the damage upgrades are applied
+            player = GameObject.FindGameObjectWithTag("Player");
+            WaveManager = FindObjectOfType<WaveManager>();
+
+            if (this == player.GetComponentInChildren<WeaponController>())
+            {
+                projectileDamage = WaveManager.projectileDamagePersistent;
+            }
+            //
         }
 
         public void AddCarriablePhysicalBullets(int count) => m_CarriedPhysicalBullets = Mathf.Max(m_CarriedPhysicalBullets + count, MaxAmmo);

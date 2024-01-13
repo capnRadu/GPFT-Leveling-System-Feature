@@ -35,6 +35,11 @@ namespace Unity.FPS.Game
         public int currentLevelPersistent = 0;
         public int levelUpAmountPersistent = 0;
 
+        // Player upgradable stats
+        public float maxHealthPersistent = 100f;
+        public float projectileDamagePersistent = 15f;
+        public float maxSpeedPersistent = 7f;
+
         private void Awake()
         {
             if (Instance != null)
@@ -56,8 +61,11 @@ namespace Unity.FPS.Game
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            // Each time a new scene is loaded, run the method
-            NextWave();
+            // Each time a new scene is loaded, and if the player hasn't leveled up, run the method
+            if (SceneManager.GetActiveScene().name != "LevelUpMenuScene")
+            {
+                NextWave();
+            }
         }
 
         private void OnDisable()
@@ -93,8 +101,6 @@ namespace Unity.FPS.Game
 
                 Vector3 randomSpawnPosition = new Vector3(Random.Range(-2.4f, 3), enemyPrefab.transform.position.y, Random.Range(-4.3f, 1.2f));
                 Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-
-                Debug.Log(randomSpawnPosition + " " + spawnRotation);
 
                 var enemy = Instantiate(enemyPrefab, randomSpawnPosition, spawnRotation);
 

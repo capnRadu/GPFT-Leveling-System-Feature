@@ -2117,13 +2117,15 @@ MonoBehaviour:
   enemyBot: {fileID: 8417610367809328983, guid: c19aa3975c722534f8ebebdde107e36f,
     type: 3}
   wave: 0
-  patrolPathSignal: 0
   coinsPersistent: 0
   currentXpPersistent: 0
   levelUpXpPersistent: 100
   levelUpXpMultiplierPersistent: 0.4
   currentLevelPersistent: 0
   levelUpAmountPersistent: 0
+  maxHealthPersistent: 100
+  projectileDamagePersistent: 15
+  maxSpeedPersistent: 7
 --- !u!4 &1505209766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2141676431450117668, guid: cd17687759887a0438ee021e51abc9d9,
@@ -6680,6 +6682,7 @@ MonoBehaviour:
   EndSceneLoadDelay: 3
   EndGameFadeCanvasGroup: {fileID: 7142924396258720985}
   WinSceneName: MainScene
+  LevelUpMenuScene: LevelUpMenuScene
   DelayBeforeFadeToBlack: 4
   WinGameMessage: All objectives completed
   DelayBeforeWinMessage: 0

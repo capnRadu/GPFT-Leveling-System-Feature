@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Unity.FPS.Game
@@ -13,6 +14,11 @@ namespace Unity.FPS.Game
 
         public UnityAction OnShoot;
 
+        // LEVELING SYSTEM
+        // Variable that communicates the damage value between ProjectileStandard and WeaponController
+        public float BaseDamage { get; private set; }
+        //
+
         public void Shoot(WeaponController controller)
         {
             Owner = controller.Owner;
@@ -20,6 +26,10 @@ namespace Unity.FPS.Game
             InitialDirection = transform.forward;
             InheritedMuzzleVelocity = controller.MuzzleWorldVelocity;
             InitialCharge = controller.CurrentCharge;
+
+            // LEVELING SYSTEM
+            BaseDamage = controller.projectileDamage;
+            //
 
             OnShoot?.Invoke();
         }

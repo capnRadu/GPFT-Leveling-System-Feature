@@ -22,5 +22,16 @@ namespace Unity.FPS.UI
         {
             SceneManager.LoadScene(SceneName);
         }
+
+        // LEVELING SYSTEM
+        // Load scene for the level up menu; load next scene only if the player has used all upgrade points
+        public void LoadTargetSceneShopMenu()
+        {
+            if (FindObjectOfType<WaveManager>().levelUpAmountPersistent == 0)
+            {
+                SceneManager.LoadScene(SceneName);
+            }
+        }
+        //
     }
 }

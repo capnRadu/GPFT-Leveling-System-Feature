@@ -30,6 +30,8 @@ namespace Unity.FPS.Game
 
         public int coinsReward;
         public float XpReward;
+
+        private WaveManager WaveManager;
         //
 
         private void Awake()
@@ -37,6 +39,13 @@ namespace Unity.FPS.Game
             // LEVELING SYSTEM
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerResources = player.GetComponent<PlayerResources>();
+            WaveManager = FindObjectOfType<WaveManager>();
+
+            // Set the player health value to the one from the wave manager so the health upgrades are applied
+            if (this.gameObject == player)
+            {
+                MaxHealth = WaveManager.maxHealthPersistent;
+            }
             //
         }
 

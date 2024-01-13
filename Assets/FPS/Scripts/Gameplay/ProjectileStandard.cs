@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.FPS.Game;
 using UnityEngine;
 
@@ -47,7 +48,7 @@ namespace Unity.FPS.Gameplay
         public bool InheritWeaponVelocity = false;
 
         [Header("Damage")] [Tooltip("Damage of the projectile")]
-        public float Damage = 40f;
+        [NonSerialized] public float Damage = 40f;
 
         [Tooltip("Area of damage. Keep empty if you don<t want area damage")]
         public DamageArea AreaOfDamage;
@@ -79,6 +80,10 @@ namespace Unity.FPS.Gameplay
 
         new void OnShoot()
         {
+            // LEVELING SYSTEM
+            Damage = m_ProjectileBase.BaseDamage;
+            //
+
             m_ShootTime = Time.time;
             m_LastRootPosition = Root.position;
             m_Velocity = transform.forward * Speed;

@@ -23,7 +23,7 @@ namespace Unity.FPS.Gameplay
         public float GroundCheckDistance = 0.05f;
 
         [Header("Movement")] [Tooltip("Max movement speed when grounded (when not sprinting)")]
-        public float MaxSpeedOnGround = 10f;
+        public float MaxSpeedOnGround;
 
         [Tooltip(
             "Sharpness for the movement when grounded, a low value will make the player accelerate and decelerate slowly, a high value will do the opposite")]
@@ -133,11 +133,22 @@ namespace Unity.FPS.Gameplay
         const float k_JumpGroundingPreventionTime = 0.2f;
         const float k_GroundCheckDistanceInAir = 0.07f;
 
+        // LEVELING SYSTEM
+        WaveManager WaveManager;
+        //
+
         void Awake()
         {
             ActorsManager actorsManager = FindObjectOfType<ActorsManager>();
             if (actorsManager != null)
                 actorsManager.SetPlayer(gameObject);
+
+            // LEVELING SYSTEM
+            WaveManager = FindObjectOfType<WaveManager>();
+
+            // Set the speed value to the one from the wave manager so the speed upgrades are applied
+            MaxSpeedOnGround = WaveManager.maxSpeedPersistent;
+            //
         }
 
         void Start()
