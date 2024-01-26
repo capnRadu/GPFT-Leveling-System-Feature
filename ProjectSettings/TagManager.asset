@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Coin Gain Skill
+  - Critical Chance Skill
+  - Critical Damage Skill
+  - HP Regen Skill
+  - Reload Speed Skill
+  - Life Steal Skill
   layers:
   - Default
   - TransparentFX

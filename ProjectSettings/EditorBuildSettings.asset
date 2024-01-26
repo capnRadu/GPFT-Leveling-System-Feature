@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FPS/Scenes/LevelUpMenuScene.unity
     guid: 38f731b909ca1ee469f67e21f771fc98
+  - enabled: 1
+    path: Assets/FPS/Scenes/ShopMenuScene.unity
+    guid: 9ae75c311cdf7234eb5eb52077e659bd
   m_configObjects: {}

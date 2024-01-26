@@ -32,6 +32,12 @@ namespace Unity.FPS.UI
                 SceneManager.LoadScene(SceneName);
             }
         }
+
+        // Load next wave for the shop menu
+        public void LoadTargetSceneNextWave()
+        {
+            SceneManager.LoadScene(SceneName);
+        }
         //
     }
 }

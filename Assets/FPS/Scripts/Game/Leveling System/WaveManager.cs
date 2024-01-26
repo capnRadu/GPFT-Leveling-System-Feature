@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 namespace Unity.FPS.Game
 {
+    /// <summary>
+    /// Script that handles the persistance of the player upgrades and resources, as well as the functionality of the wave system;
+    /// Regarding functionality, the script utilizes the NextWave method to spawn enemies, and increase their difficulty and rewards
+    /// </summary>
     public class WaveManager : MonoBehaviour
     {
         // Singleton
@@ -35,7 +39,7 @@ namespace Unity.FPS.Game
         public int currentLevelPersistent = 0;
         public int levelUpAmountPersistent = 0;
 
-        // Player upgradable stats
+        // Player upgrade stats
         public float maxHealthPersistent = 100f;
         public float projectileDamagePersistent = 15f;
         public float maxSpeedPersistent = 7f;
@@ -61,8 +65,8 @@ namespace Unity.FPS.Game
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            // Each time a new scene is loaded, and if the player hasn't leveled up, run the method
-            if (SceneManager.GetActiveScene().name != "LevelUpMenuScene")
+            // Each time the main scene is loaded, run the method
+            if (SceneManager.GetActiveScene().name != "LevelUpMenuScene" && SceneManager.GetActiveScene().name != "ShopMenuScene")
             {
                 NextWave();
             }
