@@ -30,7 +30,6 @@ public class BuySkill : MonoBehaviour
                 {
                     // Update corresponding persistent value that will be applied to the player
                     m_SkillManager.hpRegenPersistent = m_SkillManager.hpRegenAmount;
-                    // TO DO: Apply the buff to the player
 
                     // Update player coins amount
                     m_WaveManager.coinsPersistent -= m_SkillManager.hpRegenCost;
@@ -47,7 +46,6 @@ public class BuySkill : MonoBehaviour
                 {
                     // Update corresponding persistent value that will be applied to the player
                     m_SkillManager.reloadSpeedPersistent = m_SkillManager.reloadSpeedAmount;
-                    // TO DO: Apply the buff to the player
 
                     // Update player coins amount
                     m_WaveManager.coinsPersistent -= m_SkillManager.reloadSpeedCost;
@@ -55,7 +53,7 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.reloadSpeedLevel += 1;
-                    m_SkillManager.reloadSpeedAmount += 0.4f;
+                    m_SkillManager.reloadSpeedAmount += 10f;
                     m_SkillManager.reloadSpeedCost += 40;
                 }
                 break;
@@ -64,7 +62,6 @@ public class BuySkill : MonoBehaviour
                 {
                     // Update corresponding persistent value that will be applied to the player
                     m_SkillManager.criticalDamagePersistent = m_SkillManager.criticalDamageAmount;
-                    // TO DO: Apply the buff to the player
 
                     // Update player coins amount
                     m_WaveManager.coinsPersistent -= m_SkillManager.criticalDamageCost;
@@ -72,7 +69,7 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.criticalDamageLevel += 1;
-                    m_SkillManager.criticalDamageAmount += 5;
+                    m_SkillManager.criticalDamageAmount += 10;
                     m_SkillManager.criticalDamageCost += 15;
                 }
                 break;
@@ -81,7 +78,6 @@ public class BuySkill : MonoBehaviour
                 {
                     // Update corresponding persistent value that will be applied to the player
                     m_SkillManager.criticalChancePersistent = m_SkillManager.criticalChanceAmount;
-                    // TO DO: Apply the buff to the player
 
                     // Update player coins amount
                     m_WaveManager.coinsPersistent -= m_SkillManager.criticalChanceCost;
@@ -89,7 +85,7 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.criticalChanceLevel += 1;
-                    m_SkillManager.criticalChanceAmount += 8;
+                    m_SkillManager.criticalChanceAmount += 6;
                     m_SkillManager.criticalChanceCost += 30;
                 }
                 break;
@@ -98,7 +94,6 @@ public class BuySkill : MonoBehaviour
                 {
                     // Update corresponding persistent value that will be applied to the player
                     m_SkillManager.lifeStealPersistent = m_SkillManager.lifeStealAmount;
-                    // TO DO: Apply the buff to the player
 
                     // Update player coins amount
                     m_WaveManager.coinsPersistent -= m_SkillManager.lifeStealCost;
@@ -106,7 +101,7 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.lifeStealLevel += 1;
-                    m_SkillManager.lifeStealAmount += 5;
+                    m_SkillManager.lifeStealAmount += 10;
                     m_SkillManager.lifeStealCost += 25;
                 }
                 break;
@@ -115,7 +110,6 @@ public class BuySkill : MonoBehaviour
                 {
                     // Update corresponding persistent value that will be applied to the player
                     m_SkillManager.coinGainPersistent = m_SkillManager.coinGainAmount;
-                    // TO DO: Apply the buff to the player
 
                     // Update player coins amount
                     m_WaveManager.coinsPersistent -= m_SkillManager.coinGainCost;
@@ -123,7 +117,7 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.coinGainLevel += 1;
-                    m_SkillManager.coinGainAmount += 8;
+                    m_SkillManager.coinGainAmount += 10;
                     m_SkillManager.coinGainCost += 35;
                 }
                 break;

@@ -1,4 +1,4 @@
-﻿using System.Resources;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +32,16 @@ namespace Unity.FPS.Game
         public float XpReward;
 
         private WaveManager WaveManager;
+        private SkillManager SkillManager;
+
+        private float hpRegenAmount;
+        private bool isRegenHealth = false;
+        private float combatTimer = 0f;
+
+        private float criticalDamageAmount = 0;
+        private float criticalChanceAmount = 0;
+
+        private float lifeStealAmount = 0;
         //
 
         private void Awake()
@@ -40,11 +50,21 @@ namespace Unity.FPS.Game
             player = GameObject.FindGameObjectWithTag("Player");
             PlayerResources = player.GetComponent<PlayerResources>();
             WaveManager = FindObjectOfType<WaveManager>();
+            SkillManager = FindObjectOfType<SkillManager>();
 
-            // Set the player health value to the one from the wave manager so the health upgrades are applied
+            // Set the player health value to the one from the wave manager so the health upgrades are applied, and the HP regen amount to the one from the skill manager
             if (this.gameObject == player)
             {
                 MaxHealth = WaveManager.maxHealthPersistent;
+                hpRegenAmount = SkillManager.hpRegenPersistent;
+            }
+            // Because the critical system functions in the Health script, we set the critical damage and chance values to the enemy instead
+            // Same with the life steal system
+            else
+            {
+                criticalDamageAmount = SkillManager.criticalDamagePersistent;
+                criticalChanceAmount = SkillManager.criticalChancePersistent;
+                lifeStealAmount = SkillManager.lifeStealPersistent;
             }
             //
         }
@@ -53,6 +73,42 @@ namespace Unity.FPS.Game
         {
             CurrentHealth = MaxHealth;
         }
+
+        private void Update()
+        {
+            // LEVELING SYSTEM
+            // Deal with the HP regeneration mechanic if the skill is unlocked
+            if (hpRegenAmount != 0)
+            {
+                if (combatTimer < 3f)
+                {
+                    // Value that stores the number of seconds the player is not hit by an enemy
+                    combatTimer += Time.deltaTime;
+                }
+
+                // Activate HP regeneration only if the player is not continuously in combat
+                if (CurrentHealth != MaxHealth && !isRegenHealth && combatTimer >= 3f)
+                {
+                    StartCoroutine(RegenHP());
+                }
+            }
+            // 
+        }
+
+        // LEVELING SYSTEM
+        private IEnumerator RegenHP()
+        {
+            isRegenHealth = true;
+
+            while (CurrentHealth < MaxHealth && CurrentHealth > 0f && combatTimer >= 3f)
+            {
+                Heal(hpRegenAmount);
+                yield return new WaitForSeconds(1);
+            }
+
+            isRegenHealth = false;
+        }
+        //
 
         public void Heal(float healAmount)
         {
@@ -74,8 +130,39 @@ namespace Unity.FPS.Game
                 return;
 
             float healthBefore = CurrentHealth;
-            CurrentHealth -= damage;
+
+            // LEVELING SYSTEM
+            // Critical chance / damage system
+            // Given the fact that criticalChanceAmount is set to 0 for the player, they will only receive the standard damage from the enemy
+            float randomValue = UnityEngine.Random.Range(0f, 100f);
+                                
+            if (randomValue < criticalChanceAmount)
+            {
+                CurrentHealth -= criticalDamageAmount;
+            }
+            else
+            {
+                CurrentHealth -= damage;
+            }
+
+            // Life steal system
+            // Apply life steal amount to the player's HP only if the enemy is killed
+            if (this.CurrentHealth <= 0f)
+            {
+                damageSource.GetComponent<Health>().CurrentHealth += lifeStealAmount / 100 * this.MaxHealth;
+                damageSource.GetComponent<Health>().CurrentHealth = Mathf.Clamp(damageSource.GetComponent<Health>().CurrentHealth, 0f, damageSource.GetComponent<Health>().MaxHealth);
+            }
+            //
+
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0f, MaxHealth);
+
+            // LEVELING SYSTEM
+            // When the player is hit, reset the combat timer back to 0
+            if (hpRegenAmount != 0)
+            {
+                combatTimer = 0f;
+            }
+            //
 
             // call OnDamage action
             float trueDamageAmount = healthBefore - CurrentHealth;

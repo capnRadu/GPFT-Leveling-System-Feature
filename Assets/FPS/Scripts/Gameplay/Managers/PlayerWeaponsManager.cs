@@ -93,6 +93,17 @@ namespace Unity.FPS.Gameplay
         WeaponSwitchState m_WeaponSwitchState;
         int m_WeaponSwitchNewWeaponIndex;
 
+        // LEVELING SYSTEM
+        SkillManager m_SkillManager;
+        //
+
+        private void Awake()
+        {
+            // LEVELING SYSTEM
+            m_SkillManager = FindObjectOfType<SkillManager>();
+            //
+        }
+
         void Start()
         {
             ActiveWeaponIndex = -1;
@@ -443,6 +454,11 @@ namespace Unity.FPS.Gameplay
                     WeaponController weaponInstance = Instantiate(weaponPrefab, WeaponParentSocket);
                     weaponInstance.transform.localPosition = Vector3.zero;
                     weaponInstance.transform.localRotation = Quaternion.identity;
+
+                    // LEVELING SYSTEM
+                    // Update the reload rate based on the reload speed skill
+                    weaponInstance.AmmoReloadRate += m_SkillManager.reloadSpeedPersistent;
+                    //
 
                     // Set owner to this gameObject so the weapon can alter projectile/damage logic accordingly
                     weaponInstance.Owner = gameObject;

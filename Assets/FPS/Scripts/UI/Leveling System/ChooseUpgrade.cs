@@ -7,7 +7,7 @@ public class ChooseUpgrade : MonoBehaviour
 {
     WaveManager m_WaveManager;
 
-    private int healthUpgradeAmount = 3;
+    private int healthUpgradeAmount = 5;
     private int speedUpgradeAmount = 2;
     private int damageUpgradeAmount = 1;
 

@@ -7,8 +7,9 @@ namespace Unity.FPS.Game
     public class PlayerResources : MonoBehaviour
     {
         private WaveManager WaveManager;
+        private SkillManager SkillManager;
 
-        public int coins;
+        public float coins;
 
         public float currentXp;
         public float levelUpXp; // Necessary XP to level up
@@ -17,9 +18,12 @@ namespace Unity.FPS.Game
         public int currentLevel;
         public int levelUpAmount; // How many times the player has leveled up
 
+        private float coinGainAmount;
+
         private void Awake()
         {
             WaveManager = FindObjectOfType<WaveManager>();
+            SkillManager = FindObjectOfType<SkillManager>();
 
             // Transfer the values from the previouse scene through the wave manager singleton
             coins = WaveManager.coinsPersistent;
@@ -28,6 +32,8 @@ namespace Unity.FPS.Game
             levelUpXpMultiplier = WaveManager.levelUpXpMultiplierPersistent;
             currentLevel = WaveManager.currentLevelPersistent;
             levelUpAmount = WaveManager.levelUpAmountPersistent;
+
+            coinGainAmount = SkillManager.coinGainPersistent;
         }
 
         private void OnDisable()
@@ -43,7 +49,11 @@ namespace Unity.FPS.Game
 
         public void GainCoins(int amount)
         {
-            coins += amount;
+            // Apply coin gain skill
+            coins += amount + amount * coinGainAmount / 100;
+
+            // Truncate coins amount
+            coins = Mathf.Round(coins * 100f) / 100f;
         }
 
         public void GainXP(float amount)

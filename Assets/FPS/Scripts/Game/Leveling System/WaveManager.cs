@@ -32,7 +32,7 @@ namespace Unity.FPS.Game
         private float enemyXpRewardIncrease = -5;
 
         // Player resources
-        public int coinsPersistent = 0;
+        public float coinsPersistent = 0;
         public float currentXpPersistent = 0;
         public float levelUpXpPersistent = 100;
         public float levelUpXpMultiplierPersistent = 0.4f;

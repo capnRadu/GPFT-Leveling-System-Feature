@@ -17,18 +17,18 @@ public class SkillManager : MonoBehaviour
     // List that contains all skills' prefabs
     [SerializeField] private List<GameObject> skillPrefabs = new List<GameObject>();
 
-    // Stats for each skill
+    // Level 1 stats for each skill
     // These will be upgraded and passed on to the instantiated skill prefab each time the shop menu is loaded
     [NonSerialized] public int hpRegenLevel = 1;
     [NonSerialized] public float hpRegenAmount = 5;
     [NonSerialized] public int hpRegenCost = 6;
 
     [NonSerialized] public int reloadSpeedLevel = 1;
-    [NonSerialized] public float reloadSpeedAmount = 0.2f;
+    [NonSerialized] public float reloadSpeedAmount = 10f;
     [NonSerialized] public int reloadSpeedCost = 24;
 
     [NonSerialized] public int criticalDamageLevel = 1;
-    [NonSerialized] public float criticalDamageAmount = 10;
+    [NonSerialized] public float criticalDamageAmount = 25;
     [NonSerialized] public int criticalDamageCost = 4;
 
     [NonSerialized] public int criticalChanceLevel = 1;
@@ -36,21 +36,21 @@ public class SkillManager : MonoBehaviour
     [NonSerialized] public int criticalChanceCost = 10;
 
     [NonSerialized] public int lifeStealLevel = 1;
-    [NonSerialized] public float lifeStealAmount = 8;
+    [NonSerialized] public float lifeStealAmount = 10;
     [NonSerialized] public int lifeStealCost = 12;
 
     [NonSerialized] public int coinGainLevel = 1;
-    [NonSerialized] public float coinGainAmount = 5;
+    [NonSerialized] public float coinGainAmount = 10;
     [NonSerialized] public int coinGainCost = 15;
 
     // Player skill stats
     // These will be applied to the player stats
-    public float hpRegenPersistent = 0;
-    public float reloadSpeedPersistent = 0;
-    public float criticalDamagePersistent = 0;
-    public float criticalChancePersistent = 0;
-    public float lifeStealPersistent = 0;
-    public float coinGainPersistent = 0;
+    [NonSerialized] public float hpRegenPersistent = 0;
+    [NonSerialized] public float reloadSpeedPersistent = 0;
+    [NonSerialized] public float criticalDamagePersistent = 15;
+    [NonSerialized] public float criticalChancePersistent = 0;
+    [NonSerialized] public float lifeStealPersistent = 0;
+    [NonSerialized] public float coinGainPersistent = 0;
 
     private void Awake()
     {
