@@ -114,5 +114,15 @@ namespace Unity.FPS.Game
                 enemy.GetComponentInChildren<Health>().XpReward += enemyXpRewardIncrease;
             }
         }
+
+        // Reset wave values back to standard ones
+        public void ResetWave()
+        {
+            wave = 0;
+            enemyHealthIncrease = -2;
+            enemyCoinRewardIncrease = -4;
+            enemyXpRewardIncrease = -5;
+            coinsPersistent = 0;
+    }
     }
 }

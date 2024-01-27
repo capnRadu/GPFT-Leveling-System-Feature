@@ -128,8 +128,7 @@ namespace Unity.FPS.Game
                 m_TimeLoadEndGameScene = Time.time + EndSceneLoadDelay;
                 
                 // LEVELING SYSTEM
-                // If the player dies, make sure to destroy the wave manager and skill manager
-                Destroy(FindObjectOfType<WaveManager>().gameObject);
+                // If the player dies, make sure to destroy the skill manager
                 Destroy(FindObjectOfType<SkillManager>().gameObject);
                 //
             }

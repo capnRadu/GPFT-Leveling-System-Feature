@@ -38,6 +38,20 @@ namespace Unity.FPS.UI
         {
             SceneManager.LoadScene(SceneName);
         }
+
+        // Destroy the player upgrades progress when a new run / menu is loaded
+        public void NewRunOrMenu()
+        {
+            Destroy(FindObjectOfType<WaveManager>().gameObject);
+            SceneManager.LoadScene(SceneName);
+        }
+
+        // Keep the player upgrades progress on respawn
+        public void Respawn()
+        {
+            FindObjectOfType<WaveManager>().ResetWave();
+            SceneManager.LoadScene(SceneName);
+        }
         //
     }
 }
