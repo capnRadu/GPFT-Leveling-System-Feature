@@ -20,28 +20,28 @@ public class SkillManager : MonoBehaviour
     // Level 1 stats for each skill
     // These will be upgraded and passed on to the instantiated skill prefab each time the shop menu is loaded
     [NonSerialized] public int hpRegenLevel = 1;
-    [NonSerialized] public float hpRegenAmount = 5;
+    [NonSerialized] public float hpRegenAmount = 3;
     [NonSerialized] public int hpRegenCost = 6;
 
     [NonSerialized] public int reloadSpeedLevel = 1;
     [NonSerialized] public float reloadSpeedAmount = 10f;
-    [NonSerialized] public int reloadSpeedCost = 24;
+    [NonSerialized] public int reloadSpeedCost = 12;
 
     [NonSerialized] public int criticalDamageLevel = 1;
-    [NonSerialized] public float criticalDamageAmount = 25;
-    [NonSerialized] public int criticalDamageCost = 4;
+    [NonSerialized] public float criticalDamageAmount = 20;
+    [NonSerialized] public int criticalDamageCost = 18;
 
     [NonSerialized] public int criticalChanceLevel = 1;
     [NonSerialized] public float criticalChanceAmount = 10;
-    [NonSerialized] public int criticalChanceCost = 10;
+    [NonSerialized] public int criticalChanceCost = 55;
 
     [NonSerialized] public int lifeStealLevel = 1;
-    [NonSerialized] public float lifeStealAmount = 10;
-    [NonSerialized] public int lifeStealCost = 12;
+    [NonSerialized] public float lifeStealAmount = 5;
+    [NonSerialized] public int lifeStealCost = 95;
 
     [NonSerialized] public int coinGainLevel = 1;
-    [NonSerialized] public float coinGainAmount = 10;
-    [NonSerialized] public int coinGainCost = 15;
+    [NonSerialized] public float coinGainAmount = 20;
+    [NonSerialized] public int coinGainCost = 70;
 
     // Player skill stats
     // These will be applied to the player stats

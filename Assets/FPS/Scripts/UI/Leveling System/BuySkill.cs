@@ -37,8 +37,8 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.hpRegenLevel += 1;
-                    m_SkillManager.hpRegenAmount += 5;
-                    m_SkillManager.hpRegenCost += 20;
+                    m_SkillManager.hpRegenAmount += 3;
+                    m_SkillManager.hpRegenCost += 100;
                 }
                 break;
             case "Reload Speed":
@@ -54,7 +54,7 @@ public class BuySkill : MonoBehaviour
                     // Increase skill level and stats
                     m_SkillManager.reloadSpeedLevel += 1;
                     m_SkillManager.reloadSpeedAmount += 10f;
-                    m_SkillManager.reloadSpeedCost += 40;
+                    m_SkillManager.reloadSpeedCost += 110;
                 }
                 break;
             case "Critical Damage":
@@ -69,8 +69,8 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.criticalDamageLevel += 1;
-                    m_SkillManager.criticalDamageAmount += 10;
-                    m_SkillManager.criticalDamageCost += 15;
+                    m_SkillManager.criticalDamageAmount += 5;
+                    m_SkillManager.criticalDamageCost += 130;
                 }
                 break;
             case "Critical Chance":
@@ -86,7 +86,7 @@ public class BuySkill : MonoBehaviour
                     // Increase skill level and stats
                     m_SkillManager.criticalChanceLevel += 1;
                     m_SkillManager.criticalChanceAmount += 6;
-                    m_SkillManager.criticalChanceCost += 30;
+                    m_SkillManager.criticalChanceCost += 150;
                 }
                 break;
             case "Life Steal":
@@ -101,8 +101,8 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.lifeStealLevel += 1;
-                    m_SkillManager.lifeStealAmount += 10;
-                    m_SkillManager.lifeStealCost += 25;
+                    m_SkillManager.lifeStealAmount += 5;
+                    m_SkillManager.lifeStealCost += 200;
                 }
                 break;
             case "Coin Gain":
@@ -117,8 +117,8 @@ public class BuySkill : MonoBehaviour
 
                     // Increase skill level and stats
                     m_SkillManager.coinGainLevel += 1;
-                    m_SkillManager.coinGainAmount += 10;
-                    m_SkillManager.coinGainCost += 35;
+                    m_SkillManager.coinGainAmount += 15;
+                    m_SkillManager.coinGainCost += 180;
                 }
                 break;
         }

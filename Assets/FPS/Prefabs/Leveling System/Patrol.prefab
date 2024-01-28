@@ -5960,10 +5960,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27364eefd6dd0341ba72a3bfc0d9727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 80
   CriticalHealthRatio: 0.3
-  coinsReward: 4
-  XpReward: 10
+  coinsReward: 2
+  XpReward: 20
 --- !u!114 &3644820981647981706
 MonoBehaviour:
   m_ObjectHideFlags: 0

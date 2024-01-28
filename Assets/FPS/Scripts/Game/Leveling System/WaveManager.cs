@@ -23,19 +23,19 @@ namespace Unity.FPS.Game
         public int wave = 0;
         
         // Increase the number of enemies after each wave
-        private int baseEnemiesPerWave = 4;
-        private int enemiesIncreasePerWave = 1;
+        private int baseEnemiesPerWave = 5;
+        private int enemiesIncreasePerWave = 2;
 
         // Increase the enemies' health, and rewards after each wave
-        private int enemyHealthIncrease = -2;
-        private int enemyCoinRewardIncrease = -4;
-        private float enemyXpRewardIncrease = -5;
+        private int enemyHealthIncrease = -5;
+        private int enemyCoinRewardIncrease = -2;
+        private float enemyXpRewardIncrease = -3;
 
         // Player resources
         public float coinsPersistent = 0;
         public float currentXpPersistent = 0;
         public float levelUpXpPersistent = 100;
-        public float levelUpXpMultiplierPersistent = 0.4f;
+        public float levelUpXpMultiplierPersistent = 1.2f;
         public int currentLevelPersistent = 0;
         public int levelUpAmountPersistent = 0;
 
@@ -85,9 +85,9 @@ namespace Unity.FPS.Game
             }
 
             wave++;
-            enemyHealthIncrease += 2;
-            enemyCoinRewardIncrease += 4;
-            enemyXpRewardIncrease += 5;
+            enemyHealthIncrease += 5;
+            enemyCoinRewardIncrease += 2;
+            enemyXpRewardIncrease += 3;
             StartCoroutine(SpawnEnemies(enemyBot));
         }
 
@@ -119,9 +119,9 @@ namespace Unity.FPS.Game
         public void ResetWave()
         {
             wave = 0;
-            enemyHealthIncrease = -2;
-            enemyCoinRewardIncrease = -4;
-            enemyXpRewardIncrease = -5;
+            enemyHealthIncrease = -5;
+            enemyCoinRewardIncrease = -2;
+            enemyXpRewardIncrease = -3;
             coinsPersistent = 0;
     }
     }

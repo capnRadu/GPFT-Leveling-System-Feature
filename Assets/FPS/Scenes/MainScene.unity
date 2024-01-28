@@ -15446,7 +15446,7 @@ MonoBehaviour:
   coinsPersistent: 0
   currentXpPersistent: 0
   levelUpXpPersistent: 100
-  levelUpXpMultiplierPersistent: 0.4
+  levelUpXpMultiplierPersistent: 1.2
   currentLevelPersistent: 0
   levelUpAmountPersistent: 0
   maxHealthPersistent: 100

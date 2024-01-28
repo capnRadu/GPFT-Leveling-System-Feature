@@ -80,14 +80,14 @@ namespace Unity.FPS.Game
             // Deal with the HP regeneration mechanic if the skill is unlocked
             if (hpRegenAmount != 0)
             {
-                if (combatTimer < 3f)
+                if (combatTimer < 1.5f)
                 {
                     // Value that stores the number of seconds the player is not hit by an enemy
                     combatTimer += Time.deltaTime;
                 }
 
                 // Activate HP regeneration only if the player is not continuously in combat
-                if (CurrentHealth != MaxHealth && !isRegenHealth && combatTimer >= 3f)
+                if (CurrentHealth != MaxHealth && !isRegenHealth && combatTimer >= 1.5f)
                 {
                     StartCoroutine(RegenHP());
                 }
@@ -100,7 +100,7 @@ namespace Unity.FPS.Game
         {
             isRegenHealth = true;
 
-            while (CurrentHealth < MaxHealth && CurrentHealth > 0f && combatTimer >= 3f)
+            while (CurrentHealth < MaxHealth && CurrentHealth > 0f && combatTimer >= 1.5f)
             {
                 Heal(hpRegenAmount);
                 yield return new WaitForSeconds(1);
