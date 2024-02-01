@@ -23,6 +23,10 @@ namespace Unity.FPS.Gameplay
         Vector3 m_StartPosition;
         bool m_HasPlayedFeedback;
 
+        // LEVELING SYSTEM
+        private float despawnTimer = 2f;
+        //
+
         protected virtual void Start()
         {
             PickupRigidbody = GetComponent<Rigidbody>();
@@ -46,6 +50,17 @@ namespace Unity.FPS.Gameplay
 
             // Handle rotating
             transform.Rotate(Vector3.up, RotatingSpeed * Time.deltaTime, Space.Self);
+
+            // LEVELING SYSTEM
+            if (despawnTimer > 0)
+            {
+                despawnTimer -= Time.deltaTime;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            //
         }
 
         void OnTriggerEnter(Collider other)
