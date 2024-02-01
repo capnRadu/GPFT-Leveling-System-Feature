@@ -19,7 +19,10 @@ namespace Unity.FPS.UI
 
         private void Update()
         {
-            waveText.text = $"Wave {m_WaveManager.wave}";
+            if (m_WaveManager.waveTimer >= 0f)
+            {
+                waveText.text = $"Wave {m_WaveManager.wave}\n{(int) m_WaveManager.waveTimer}";
+            }
         }
     }
 }

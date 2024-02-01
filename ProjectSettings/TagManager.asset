@@ -10,6 +10,7 @@ TagManager:
   - HP Regen Skill
   - Reload Speed Skill
   - Life Steal Skill
+  - Patrol
   layers:
   - Default
   - TransparentFX

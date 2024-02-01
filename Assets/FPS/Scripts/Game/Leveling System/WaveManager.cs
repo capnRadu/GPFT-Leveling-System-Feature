@@ -1,3 +1,4 @@
+using Codice.CM.Client.Differences;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,9 @@ namespace Unity.FPS.Game
         private GameFlowManager flowManager;
 
         public int wave = 0;
+        public float waveTimer = 0f;
+        private bool hasSpawed = false;
+        private bool isFinished = false;
         
         // Increase the number of enemies after each wave
         private int baseEnemiesPerWave = 5;
@@ -72,6 +76,29 @@ namespace Unity.FPS.Game
             }
         }
 
+        private void Update()
+        {
+            // Keep spawning enemies until the wave timer reaches zero only if all previous enemies are eliminated
+            if (waveTimer >= 0)
+            {
+                waveTimer -= Time.deltaTime;
+
+                if (GameObject.FindGameObjectsWithTag("Patrol").Length == 0 && !hasSpawed)
+                {
+                    StartCoroutine(SpawnEnemies(enemyBot));
+                }
+            }
+            else if (waveTimer < 0)
+            {
+                if (GameObject.FindGameObjectsWithTag("Patrol").Length == 0 && !isFinished)
+                {
+                    // Signal that all enemies are eliminated and the wave timer has ran out
+                    EventManager.Broadcast(Events.AllObjectivesCompletedEvent);
+                    isFinished = true;
+                }
+            }
+        }
+
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -85,33 +112,46 @@ namespace Unity.FPS.Game
             }
 
             wave++;
+            waveTimer = 45f;
+            hasSpawed = false;
+            isFinished = false;
+
             enemyHealthIncrease += 5;
             enemyCoinRewardIncrease += 2;
             enemyXpRewardIncrease += 3;
-            StartCoroutine(SpawnEnemies(enemyBot));
         }
 
         private IEnumerator SpawnEnemies(GameObject enemyPrefab)
         {
+            hasSpawed = true;
+
             yield return new WaitForSeconds(2f);
 
-            // Increase the number of enemies
-            int enemiesToSpawn = baseEnemiesPerWave + (enemiesIncreasePerWave * (wave - 1));
-
-            for (int i = 0; i < enemiesToSpawn; i++)
+            // This check prevents enemy spawning in case the event has been broadcasted but the coroutine already started
+            if (!isFinished)
             {
-                var x = Random.Range(1, 10000);
-                Random.InitState(x);
+                // Increase the number of enemies and choose a random value that is bigger than the half
+                int increaseEnemies = baseEnemiesPerWave + (enemiesIncreasePerWave * (wave - 1));
+                int enemiesToSpawn = Random.Range((int) increaseEnemies / 2, increaseEnemies + 1);
 
-                Vector3 randomSpawnPosition = new Vector3(Random.Range(0f, 26f), enemyPrefab.transform.position.y, Random.Range(-16f, 13f));
-                Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+                for (int i = 0; i < enemiesToSpawn; i++)
+                {
+                    var x = Random.Range(1, 10000);
+                    Random.InitState(x);
 
-                var enemy = Instantiate(enemyPrefab, randomSpawnPosition, spawnRotation);
+                    Vector3 randomSpawnPosition = new Vector3(Random.Range(0f, 26f), enemyPrefab.transform.position.y, Random.Range(-16f, 13f));
+                    Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
 
-                // Increase the enemy's stats
-                enemy.GetComponentInChildren<Health>().MaxHealth += enemyHealthIncrease;
-                enemy.GetComponentInChildren<Health>().coinsReward += enemyCoinRewardIncrease;
-                enemy.GetComponentInChildren<Health>().XpReward += enemyXpRewardIncrease;
+                    var enemy = Instantiate(enemyPrefab, randomSpawnPosition, spawnRotation);
+
+                    // Increase the enemy's stats
+                    enemy.GetComponentInChildren<Health>().MaxHealth += enemyHealthIncrease;
+                    enemy.GetComponentInChildren<Health>().coinsReward += enemyCoinRewardIncrease;
+                    enemy.GetComponentInChildren<Health>().XpReward += enemyXpRewardIncrease;
+
+                    // Signal that the spawn has completed
+                    hasSpawed = false;
+                }
             }
         }
 
